@@ -6,11 +6,32 @@
     <script src="https://unpkg.com/vue@3"></script>
     <link rel="stylesheet" href="style.css">
 </head>
-<body>
-<div id="wrapper">
-    <img src="DND%20map.PNG" alt="A dnd map" @click="giveCoords" >
-    <p>X: {{ getX }}, Y: {{ getY }}</p>
+
+<body style="background-color:darkslategray">
+
+<div id="app">
+    <div class="centered">
+
+        <img src="DND%20map.PNG" alt="A dnd map"
+             @mouseenter="hover = true"
+             @mousemove="giveCoords"
+
+             @click.left="createButton">
+
+        <div v-for="button in buttonList"
+             class="buttonClass"
+             :style="{ left: button.xPos + 'px', top: button.yPos + 'px', position: relative}">
+        </div>
+
+    </div>
+
+    <div v-if="hover" class="centered hidden">
+        <p>X: {{ xCoord }}, Y: {{ yCoord }}</p>
+    </div>
+    
 </div>
+
 <script src="script.js"></script>
+
 </body>
 </html>
